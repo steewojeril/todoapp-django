@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <table class="table">
+                <tr>
+                    <th>Task</th>
+                    <th>Created Date</th>
+                    <th>Created Status</th>
+                    <th>User</th>
+                </tr>
+            <tr>
+                <td>{{object.task_name}}</td>
+                <td>{{object.created_date}}</td>
+                <td>{{object.status}}</td>
+                <td>{{object.user}}</td>
+            </tr>            
+        </table>   
+        <a href="{%url 'todolist'%}" class="btn btn-outline-primary">Go Back</a>
+    </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+{%endblock%}

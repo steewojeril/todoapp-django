@@ -1,0 +1,57 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block body_block%}
+<br>
+<div class="container-fluid">
+    <div class=" image-container">            
+        <img src="{%static 'assets/todo.jpg'%}" alt="">
+    </div>
+    <br>
+    
+    <!-- <h2>Welcome {{request.user}}</h2> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+            <a class="btn btn-primary container-fluid" href="{%url 'todoadd'%}">Add Todo</a>
+            <!-- <a href="{%url 'todolist'%}">All Todo</a>
+            <a href="{%url 'signout'%}">Logout</a> -->
+        </div>
+        <div class="col-2"></div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table">
+                {%if todo_incomplete%}                
+                <h3>Incompleted Todos...</h3>
+            <tr>
+                <th>Task</th>
+                    <!-- <th>Created Date</th> -->
+                    <!-- <th>Created Status</th> -->
+                    <th>Action</th>
+                </tr>
+                {%for todo in todo_incomplete%}
+            <tr>
+                <td>{{todo.task_name}}</td>
+                <!-- <td>{{todo.created_date}}</td> -->
+                <!-- <td>{{todo.status}}</td> -->
+                <td>
+                    <a href="{%url 'todoedit' todo.id%}?from_page=home" class="btn btn-outline-primary">edit</a>
+                    <a href="{%url 'tododetails' todo.id%}" class="btn btn-outline-warning">details</a>
+                    <a href="{%url 'removetodo' todo.id%}?from_page=home" class="btn btn-outline-danger">delete</a>
+                </td>
+            </tr>            
+            {%endfor%}
+            {%else%}
+            <h2>Great! No Incomplete Todos</h2>
+            {%endif%}
+        </table>   
+        <div class="col-2"></div>
+        
+    </div>
+</div>
+{%endblock%}
